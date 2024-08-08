@@ -1,0 +1,2453 @@
+/* online connectivity */
+/* @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cinzel+Decorative:wght@400;700&family=Rubik:wght@300;400&display=swap'); */
+
+
+/* offline connectivity */
+
+/* rubik-300 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/rubik-v26-latin-300.eot');
+    src: url('../fonts/rubik-v26-latin-300.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/rubik-v26-latin-300.woff2') format('woff2'),
+        url('../fonts/rubik-v26-latin-300.woff') format('woff'),
+        url('../fonts/rubik-v26-latin-300.ttf') format('truetype'),
+        url('../fonts/rubik-v26-latin-300.svg#Rubik') format('svg');
+}
+
+/* beau-rivage-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Beau Rivage';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/beau-rivage-v2-latin-regular.woff2') format('woff2');
+}
+
+/* cinzel-decorative-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/cinzel-decorative-v14-latin-regular.eot');
+    src: url('../fonts/cinzel-decorative-v14-latin-regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/cinzel-decorative-v14-latin-regular.woff2') format('woff2'),
+        url('../fonts/cinzel-decorative-v14-latin-regular.woff') format('woff'),
+        url('../fonts/cinzel-decorative-v14-latin-regular.ttf') format('truetype'),
+        url('../fonts/cinzel-decorative-v14-latin-regular.svg#CinzelDecorative') format('svg');
+}
+
+/* cinzel-decorative-900 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Cinzel Decorative';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/cinzel-decorative-v14-latin-900.eot');
+    src: url('../fonts/cinzel-decorative-v14-latin-900.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/cinzel-decorative-v14-latin-900.woff2') format('woff2'),
+        url('../fonts/cinzel-decorative-v14-latin-900.woff') format('woff'),
+        url('../fonts/cinzel-decorative-v14-latin-900.ttf') format('truetype'),
+        url('../fonts/cinzel-decorative-v14-latin-900.svg#CinzelDecorative') format('svg');
+}
+
+
+/* font-family: 'Beau Rivage', cursive; */
+/* font-family: 'Cinzel Decorative', cursive; */
+/* font-family: 'Rubik', sans-serif; */
+:root {
+    --bg_green: #0a3b37;
+    --bg_yellow: #FF9D39;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.container {
+    width: 1320px;
+    margin: auto;
+}
+
+.spacer {
+    padding-top: 70px;
+    /* padding-bottom: 70px; */
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* ================================= start header ======================================== */
+.bg_color {
+    background-color: transparent;
+    border-bottom: 2px solid var(--bg_yellow);
+    position: relative;
+    /* position: fixed; */
+}
+
+.left_logo>img {
+    width: 125px;
+    object-fit: cover;
+    padding: 11px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0a3b37;
+    z-index: 10;
+}
+
+nav {
+    position: relative;
+}
+
+.main>li>a {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--bg_yellow);
+    font-size: 16px;
+    padding: 23px 20px;
+}
+
+.main>li:not(.mega) {
+    position: relative;
+}
+
+.main>li.active>a {
+    color: white;
+}
+
+.main>li>a:hover {
+    color: white;
+    transition: .3s;
+}
+
+.main>li>a>i {
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+.sub_menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 0px 1px black;
+    border-top: 2px #FF9D39 solid;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 10;
+}
+
+.sub_menu>li>a {
+    display: block;
+    padding: 10px 15px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    width: 170px;
+    color: black;
+    font-weight: bolder;
+}
+
+.main li:hover>.sub_menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sub_menu>li:hover>a {
+    background-color: var(--bg_green);
+    color: white;
+}
+
+.mega_menu {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 3px 5px black;
+    position: absolute;
+    display: grid;
+    top: 100%;
+    left: 0;
+    z-index:5;
+    grid-template-columns: repeat(5, 1fr);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    padding-bottom: 50px;
+}
+.mega_img
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.main li:hover .mega_menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mega_menu_main>li>a {
+    padding: 10px 100px;
+    background-color: white;
+    font-size: 16px;
+    font-family: 'Rubik', sans-serif;
+    color: black;
+    font-weight: bolder;
+}
+
+.mega_menu_main>li:hover>a {
+    color: var(--bg_yellow);
+}
+
+.single_mega h4 {
+    color: var(--bg_yellow);
+    font-size: 25px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 100px;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.single_mega .no {
+    color: transparent;
+}
+
+.mega_menu_main hr {
+    margin-left: 25%;
+}
+
+/* ================================= end header ======================================== */
+
+/* ================================= start main ======================================== */
+.hero_section {
+    background-image: url(../image/bg.png);
+    /* height:100vh; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.hero_image img {
+    margin: 230px 570px;
+    object-fit: cover;
+    height: 300px;
+    width: 350px;
+    position: relative;
+    z-index: 5;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+
+}
+
+.hero_image::before {
+    content: "";
+    background-image: url(../image/flowers_left.svg);
+    background-size: contain;
+    position: absolute;
+    width: 235px;
+    height: 238px;
+    background-repeat: no-repeat;
+    top: 180px;
+    left: 443px;
+}
+
+.hero_image::after {
+    content: "";
+    background-image: url(../image/flowers_right.svg);
+    background-size: contain;
+    position: absolute;
+    width: 235px;
+    height: 238px;
+    background-repeat: no-repeat;
+    bottom: 150px;
+    right: 460px;
+}
+
+.image_ring::after {
+    content: "";
+    background-image: url(../image/hero_image_border\ \(1\).png);
+    position: absolute;
+    width: 47%;
+    height: 47%;
+    z-index: 6;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 200px;
+    left: 388px;
+    background-position: center;
+}
+
+.hero_name {
+    position: absolute;
+    top: 54%;
+    left: 7%;
+    color: white;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 140px;
+}
+
+.heroin_name {
+    position: absolute;
+    top: 54%;
+    right: 7%;
+    color: white;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 140px;
+}
+
+.married_text {
+    position: relative;
+}
+
+.p {
+    position: absolute;
+    bottom: 80px;
+    left: 22%;
+    color: var(--bg_yellow);
+    font-size: 50px;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.married_text .p::after {
+    content: "";
+    background-image: url(../image/small_flower_left.svg);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.married_text .p::before {
+    content: "";
+    background-image: url(../image/small_flower_right.svg);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* ================================= end main ======================================== */
+
+
+/* ================================= strat details ======================================== */
+
+.bg_white {
+    background-color: white;
+    padding: 180px 200px;
+    /* height: 115vh; */
+    position: relative;
+}
+
+.bg_white::before {
+    content: "";
+    background-image: url(../image/leaf_left.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height: 400px;
+    display: inline-block;
+    transform: translate(-230px, -150px);
+}
+
+.about_us p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 100px;
+    color: #E9EEED;
+    position: absolute;
+    top: 90px;
+    left: 38%;
+    font-weight: bolder;
+}
+
+.lets_know .left_side {
+    font-size: 40px;
+    color: #444444;
+    font-family: 'Cinzel Decorative', cursive;
+    position: absolute;
+    top: 93px;
+    left: 34%;
+}
+
+.left_side::after {
+    content: "";
+    background-image: url(../image/orange_leaf_right.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.left_side::before {
+    content: "";
+    background-image: url(../image/orange_leaf_left.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.bgcolor_groom {
+    background-color: #E9EEED;
+    height: 380px;
+    width: 530px;
+    position: absolute;
+    top: 310px;
+    left: 25%;
+    transform: translateX(-150px);
+    margin-right: 20px;
+}
+
+.bgcolor_bride {
+    background-color: #E9EEED;
+    height: 380px;
+    width: 530px;
+    position: absolute;
+    top: 310px;
+    left: 50%;
+    margin-left: 20px;
+}
+
+.bgcolor_groom img {
+    height: 190px;
+    width: 200px;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+    position: absolute;
+    top: -95px;
+    left: 50%;
+    transform: translateX(-90px);
+    background-position: center;
+}
+
+.bgcolor_bride img {
+    height: 190px;
+    width: 200px;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+    position: absolute;
+    top: -95px;
+    left: 50%;
+    transform: translateX(-90px);
+    background-position: center;
+}
+
+.bgcolor_groom h2,
+.bgcolor_bride h2 {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-75px);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_green);
+
+}
+
+.about_single_sep {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 190px;
+    left: 50%;
+    transform: translateX(-15px);
+}
+
+.groom_detail,
+.bride_detail {
+    position: absolute;
+    bottom: 20px;
+    padding: 0 35px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 17.5px;
+    color: #777777;
+    text-align: center;
+    font-weight: 700;
+
+}
+
+/* ================================= end details ======================================== */
+
+
+/* ================================= start parallex ======================================== */
+.back {
+    height: 600px;
+    background-color: black;
+    background-image: url(../image/banner3.png);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+
+}
+
+.date {
+    height: 600px;
+    background-color: rgba(10, 55, 59, 0.7);
+}
+
+.date::before {
+    content: "";
+    background-image: url(../image/golden_left.png);
+    background-repeat: no-repeat;
+    width: 150px;
+    background-size: contain;
+    height: 150px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.date .save {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.date .march {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 70px;
+    color: white;
+    text-align: center;
+    padding-top: 110px;
+    font-weight: bolder;
+}
+
+.date .down_line {
+    color: var(--bg_yellow);
+    font-family: 'Rubik', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 40px;
+    letter-spacing: .5px;
+    font-weight: bold;
+}
+
+.word>span {
+    text-align: center;
+    padding-left: 200px;
+    font-family: 'Beau Rivage', cursive;
+    color: white;
+    font-size: 75px;
+}
+
+.word {
+    padding-top: 60px;
+}
+
+.heading .days,
+.heading .hourse {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 23px !important;
+    color: var(--bg_yellow);
+    padding-left: 16.5%;
+    font-weight: bold;
+}
+
+.heading .minute,
+.heading .second {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 23px !important;
+    color: var(--bg_yellow);
+    padding-left: 12.5%;
+    font-weight: bold;
+}
+
+.heading {
+    padding-top: 30px;
+}
+
+.about_single_sep_1 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    transform: translateX(-20px);
+}
+
+/* ================================= start parallex ======================================== */
+
+
+/* ================================= start our wedding part ======================================== */
+.our_wedding {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 70px;
+    position: relative;
+}
+
+.wedding {
+    font-family: 'Rubik', sans-serif;
+    font-size: 110px;
+    color: #E9EEED;
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.wedding_details .wedding_side {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #444444;
+}
+
+.paragraph {
+    width: 60%;
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #939393;
+}
+
+.wedding_side::after {
+    content: "";
+    background-image: url(../image/orange_leaf_right.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.wedding_side::before {
+    content: "";
+    background-image: url(../image/orange_leaf_left.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.first {
+    background-color: transparent;
+    width: 70%;
+    margin: auto;
+}
+
+.first .all_details {
+    width: 50%;
+    background-color: #E9EEED;
+    padding: 70px 30px;
+
+}
+
+.all_details .rec_p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #939393;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.all_details .cer_p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #939393;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.btn2 a {
+    padding: 10px 13px;
+    background-color: var(--bg_green);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.btn2:hover a {
+    color: var(--bg_green);
+    background-color: white;
+    border: 1px solid var(--bg_green);
+}
+
+.all_details .ceremony {
+    text-align: start;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--bg_green);
+}
+
+.btn1 a {
+    padding: 10px 13px;
+    background-color: var(--bg_green);
+    margin-left: 68%;
+    text-align: end;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.btn1:hover a {
+    color: var(--bg_green);
+    background-color: white;
+    border: 1px solid var(--bg_green);
+}
+
+.first .all_img {
+    width: 50%;
+    background-color: yellow;
+}
+
+.all_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.all_details .reception {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: end;
+    margin-bottom: 20px;
+    color: var(--bg_green);
+}
+
+/* ================================= end our wedding part ======================================== */
+/* ================================= start video ======================================== */
+.video_sec {
+    background-image: url(../image/videoImage.png);
+    background-position: center;
+    background-size: cover;
+    height: 632px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px;
+    position: relative;
+}
+
+.transpernt {
+    height: 632px;
+    width: 100%;
+    background-color: #947245;
+    opacity: .2;
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.background {
+    background-color: var(--bg_green);
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================================= end video ======================================== */
+
+
+/* ================================= start wiil you atttend? ========================= */
+.will_attend {
+    padding-bottom: 50px;
+}
+
+.will_attend_txt {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 80px;
+    padding: 250px 350px 90px 350px;
+    color: var(--bg_green);
+}
+
+.will_attend_p {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: #444444;
+    font-weight: bold;
+    margin-left:30%;
+    padding-bottom: 10px;
+}
+
+.will_attend_p2 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: #444444;
+    font-weight: bold;
+    margin-left:35%;
+    padding-bottom: 100px;
+}
+
+.rsvp_btn {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 1px;
+    background-color: var(--bg_green);
+    padding: 12px 50px;
+    font-weight: bolder;
+    transition: .3s;
+    margin-left: 42%;
+}
+.rsvp_btn:hover {
+    color: var(--bg_green);
+    background-color: white;
+    border: 2px solid var(--bg_green);
+    font-weight: bolder;
+}
+.will_attend::before
+{
+    content: "";
+    background-image: url(../image/attendance_left.png);
+    background-repeat: no-repeat;
+    width: 610px;
+    background-size: contain;
+    height: 610px;
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left:0;
+}
+.will_attend::after
+{
+    content: "";
+    background-image: url(../image/attendance_right.png);
+    background-repeat: no-repeat;
+    width: 610px;
+    background-position: right;
+    background-size: contain;
+    height: 610px;
+    display: inline-block;
+    position: absolute;
+    right:0px;
+    top:0;
+}
+/* ================================= end wiil you atttend? ======================================== */
+
+
+/* ================================= start thank you ======================================== */
+
+.footer_img {
+    height: 600px;
+}
+
+.footer_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.thank_you {
+    position: relative;
+}
+
+.footer_img::before {
+    content: "";
+    background-image: url(../image/footer_center.png);
+    background-repeat: no-repeat;
+    width: 300px;
+    background-size: contain;
+    height: 300px;
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-150px);
+    z-index: 4;
+}
+
+.thank_you::before {
+    content: "";
+    background-image: url(../image/flowers_left.svg);
+    background-repeat: no-repeat;
+    width: 250px;
+    background-size: contain;
+    height: 250px;
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 31%;
+}
+
+.thank_you::after {
+    content: "";
+    background-image: url(../image/flowers_right.svg);
+    background-repeat: no-repeat;
+    width: 250px;
+    background-size: contain;
+    height: 250px;
+    display: inline-block;
+    position: absolute;
+    bottom: 15%;
+    right: 30%;
+}
+
+.j_s .first_let {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 80px;
+    color: var(--bg_green);
+    z-index: 40;
+}
+
+.j_s .and {
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_yellow);
+    z-index: 40;
+    font-weight: bolder;
+}
+
+.j_s .last_let {
+    position: absolute;
+    top: 54%;
+    left: 51%;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 80px;
+    color: var(--bg_green);
+    z-index: 40;
+}
+
+.last_thank {
+    position: absolute;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: white;
+    bottom: 10%;
+    left: 42%;
+    letter-spacing: 2px;
+}
+
+/* ================================= end thank you ======================================== */
+
+/* ++++++++++++++++++++++++++++++++++ ABOUT START +++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* ================================= start about transpernt ======================================== */
+.main_about {
+    background-image: url(../image/about.png);
+    height: 500px;
+    width: 100%;
+    position: relative;
+}
+.about_img
+{
+    position: relative;
+}
+.color_trans {
+    background-color: #0a3b37;
+    height: 500px;
+    opacity: .8;
+}
+.main_about::before
+{
+    content: "";
+    background-image: url(../image/golden_right.png);
+    height: 300px;
+    z-index:5;
+    width: 300px;
+    position: absolute;
+    right:0;
+    bottom:-50px;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.about_txt {
+    font-size: 100px;
+    font-family: 'Cinzel Decorative', cursive;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-160px);
+    z-index: 5;
+}
+
+.about_img {
+    position: relative;
+}
+
+/* .main_about::after
+{
+    content: "";
+    background-image: url(../image/about-right-leaf.svg);
+    background-repeat: no-repeat;
+    width: 350px;
+    background-size: contain;
+    height: 350px;
+    display: inline-block;
+    position: absolute;
+    bottom:-110px;
+    left:78%;
+} */
+/* ================================= end about transpernt ======================================== */
+
+
+/* ================================= start img ring ======================================== */
+.couple_ring {
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.couple_ring::before {
+    content: "";
+    background-image: url(../image/about-couple-shape.png);
+    background-repeat: no-repeat;
+    width: 350px;
+    background-size: contain;
+    height: 350px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.couple_ring_img {
+    text-align: center;
+}
+
+.couple_ring_img::before {
+    content: "";
+    background-image: url(../image/couple_image.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height: 500px;
+    display: inline-block;
+    position: absolute;
+    bottom: 15%;
+    right: 27%;
+}
+
+.about_b_g {
+    display: flex;
+    justify-content: space-between;
+    transform: translatey(420px);
+}
+
+.about_groom_d {
+    width: 25%;
+}
+
+.about_groom_d .the_groom {
+    font-size: 25px;
+    font-family: 'Beau Rivage', cursive;
+    color: var(--bg_green);
+    padding-bottom: 10px;
+
+}
+
+.about_groom_d .the_bride {
+    font-size: 25px;
+    font-family: 'Beau Rivage', cursive;
+    color: var(--bg_green);
+    padding-bottom: 10px;
+}
+
+.groom_name {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    color: var(--bg_yellow);
+    padding-bottom: 10px;
+}
+
+.groom_name::before {
+    content: "";
+    background-image: url(../image/ac-small-leaf-left.png);
+    background-repeat: no-repeat;
+    width: 70px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 45px;
+}
+
+.groom_name::after {
+    content: "";
+    background-image: url(../image/ac-small-leaf-right.png);
+    background-repeat: no-repeat;
+    width: 70px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 260px;
+}
+
+.bride_name {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    color: var(--bg_yellow);
+    padding-bottom: 10px;
+}
+
+.bride_name::before {
+    content: "";
+    background-image: url(../image/ac-small-leaf-left.png);
+    background-repeat: no-repeat;
+    width: 70px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    bottom: 65px;
+    right: 270px;
+}
+
+.bride_name::after {
+    content: "";
+    background-image: url(../image/ac-small-leaf-right.png);
+    background-repeat: no-repeat;
+    width: 70px;
+    background-size: contain;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    bottom: 65px;
+    right: 40px;
+}
+
+.about_groom_d .groom_p {
+    text-align: center;
+    margin-left: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #444444;
+    font-weight: bold;
+    opacity: .8;
+}
+
+.about_groom_d .bride_p {
+    text-align: center;
+    margin-right: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #444444;
+    font-weight: bold;
+    opacity: .8;
+}
+
+/* ================================= end img ring ======================================== */
+
+
+/* ================================= start line part ======================================== */
+.main_bg {
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    width: 100%;
+}
+.main_bg::before
+{
+    content:"";
+    background-image: url(../image/about-main-left-leaf.svg);
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: -20px;
+    left:-120px;
+}
+
+.first_part {
+    width: 55%;
+    background-color: #E9EEED;
+    padding-top: 130px;
+    padding-bottom: 120px;
+    padding-left: 130px;
+    padding-right: 50px;
+}
+
+.first_part_details .we_are {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: var(--bg_green);
+    margin-bottom: 35px;
+}
+.second_part {
+    width: 45%;
+    background-color: #2B5551;
+    padding-top: 130px;
+    padding-bottom: 70px;
+    padding-left: 70px;
+    padding-right: 70px;
+    position: relative;
+}
+.first_part_details .we_are_p {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 22px !important;
+    margin-bottom: 15px;
+    color: #444444;
+    font-weight: bold;
+}
+.first_part_details .aliquam {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    font-weight: bold;
+}
+.btn1_about a {
+    padding: 10px 13px;
+    background-color: var(--bg_green);
+    margin-top: 40px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+.btn1_about:hover a {
+    color: var(--bg_green);
+    background-color: white;
+    border: 1px solid var(--bg_green);
+}
+.main_left img {
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+.second_part_main {
+    margin-bottom: 50px;
+}
+
+.second_part_details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left p {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_yellow);
+    font-weight: bolder;
+}
+
+.right p {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_yellow);
+}
+
+.line {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: var(--bg_yellow);
+    margin-top: 15px;
+}
+
+.line::before {
+    content: "";
+    background-color: white;
+    width: 240px;
+    height: 7px;
+    position: absolute;
+    top: -4px;
+    z-index: 1;
+}
+
+.line_1 {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: var(--bg_yellow);
+    margin-top: 15px;
+}
+
+.line_1::before {
+    content: "";
+    background-color: white;
+    width: 380px;
+    height: 7px;
+    position: absolute;
+    top: -4px;
+    z-index: 1;
+}
+
+.line_2 {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: var(--bg_yellow);
+    margin-top: 15px;
+}
+
+.line_2::before {
+    content: "";
+    background-color: white;
+    width: 290px;
+    height: 7px;
+    position: absolute;
+    top: -4px;
+    z-index: 1;
+}
+
+.line_3 {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: var(--bg_yellow);
+    margin-top: 15px;
+}
+
+.line_3::before {
+    content: "";
+    background-color: white;
+    width: 200px;
+    height: 7px;
+    position: absolute;
+    top: -4px;
+    z-index: 1;
+}
+
+/* ================================= end line part ======================================== */
+
+
+/* ================================= start our moment ======================================== */
+.img_parent {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 400px;
+    background-color: transparent;
+    /* overflow-x: hidden; */
+}
+
+.first_img {
+    width: 50%;
+    background-color: var(--bg_green);
+    padding-top: 70px;
+    padding-bottom: 30px;
+    position: relative;
+    text-align: center;
+}
+
+.first_img .j_and_s {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: #ffffff;
+    padding-bottom: 80px;
+}
+
+.about_single_sep_2 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 135px;
+    left: 50%;
+    transform: translateX(-50px);
+}
+
+.about_single_sep_3 {
+    width: 3px;
+    height: 50px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    transform: translateX(-15px);
+}
+
+.first_img .first_img_p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding-bottom: 80px;
+}
+
+.first_img .our_story {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.first_img .our_story:hover {
+    color: var(--bg_yellow);
+}
+
+.second_img {
+    width: 50%;
+}
+.moment_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transform: translateY(194px);
+}
+
+.third_img img {
+    position: relative;
+    z-index: 6;
+}
+
+.three_img {
+    position: relative;
+    overflow-x: hidden;
+    padding-bottom: 100px;
+}
+
+.img_parent::before{
+    content: "";
+    background-image: url(../image/about-moments-leaf-left.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height: 500px;
+    display: inline-block;
+    position: absolute;
+    top: -90px;
+    left: -200px;
+}
+.img_parent::after
+{
+    content: "";
+    background-image: url(../image/about-moments-leaf-right.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height:500px;
+    background-position:right;
+    position: absolute;
+    z-index: -2;
+    left: 75%;
+    bottom:0%;
+}
+/* ================================= end our moment ======================================== */
+
+
+/* ================================= start frds part ======================================== */
+.frds_main_part {
+    padding-top: 180px;
+    background-color: #E9EEED;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.title_frd p {
+    text-align: center;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    color: #444444;
+    font-weight: bold;
+    padding-bottom: 100px;
+}
+
+.title_frd::before {
+    content: "";
+    background-image: url(../image/orange_leaf_left.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 100px;
+    position: absolute;
+    top: 162px;
+    left: 20%;
+}
+
+.title_frd::after {
+    content: "";
+    background-image: url(../image/orange_leaf_right.png);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 100px;
+    position: absolute;
+    right: 300px;
+    top: 162px;
+}
+/* +++++++++++++++++ grid part +++++++++++++++++++++++ */
+.frd_main {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 30px;
+    margin-top: 50px;
+    position:relative;
+}
+
+.groom_1 {
+    width: 100%;
+    height: 260px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+}
+
+.groom_1 img{
+    width: calc(100% - 25px);
+    height: calc(100% - 25px);
+    object-fit: cover;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+}
+.mason_details::after
+{
+    content: "";
+    background-image: url(../image/border_hexagon.svg);
+    background-repeat: no-repeat;
+    width: 100px;
+    background-size: contain;
+    height: 100px;
+    position: absolute;
+    right: 300px;
+    top: 162px;
+}
+.mason_details
+{
+    background-color:#E9EEED;
+    position: absolute;
+    width: calc(100% - 25px);
+    height: calc(100% - 25px);
+    object-fit: cover;
+    padding: 90px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+}
+.mason_details > h6
+{
+    text-align: center;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 25px;
+    color: var(--bg_green);
+    padding-bottom: 7px;
+}
+.mason_details > p
+{
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: var(--bg_yellow);
+    font-weight: bold;
+}
+.groom_1:hover .mason_details
+{
+    opacity: 1;
+    visibility: visible;
+    transition: .3s;
+}
+.groom_1::after
+{
+    content: "";
+    background-image: url(../image/border_hexagon.svg);
+    background-repeat: no-repeat;
+    width: 330px;
+    background-size: contain;
+    height: 330px;
+    position: absolute;
+    top:-30px;
+    left:-10px;
+    opacity: 0;
+    transform: rotate(45deg);
+}
+.groom_1:hover::after
+{
+    opacity: 1;
+    transition-duration:.5s;
+    transform: rotate(0deg);
+}
+/* ================================= end frds part ======================================== */
+
+
+/* +++++++++++++++++++++++++++++++++ start story +++++++++++++++++++++++++++++++++++++++++ */
+/* ================================= start date fix portion ======================================== */
+font {
+    color: var(--bg_yellow);
+}
+
+.couple_name {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.jam_sah {
+    font-family: 'Beau Rivage', cursive;
+    font-size: 80px;
+    color: #2B5551;
+    padding-bottom: 65px;
+}
+
+.march_20 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    color: var(--bg_yellow);
+    padding-bottom: 40px;
+}
+/* ================================= end date fix portion ======================================== */
+
+/* ================================= start ask part ======================================== */
+.ask_part_main {
+    position: relative;
+    align-items: center;
+}
+
+.ask_part_bg {
+    background-color: #E9EEED;
+    padding: 130px 135px;
+}
+
+.he_and_her {
+    font-family: 'Beau Rivage', cursiv e;
+    font-size: 60px;
+    color: var(--bg_green);
+    padding-bottom: 60px;
+    z-index:9;
+    position: relative;
+}
+
+.lorem {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: #444444;
+    font-weight: bold;
+    padding-bottom: 30px;
+    z-index: 9;
+    position: relative;
+}
+.p_long {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    width: 52%;
+    font-weight: bold;
+    z-index:9;
+    position: relative;
+}
+.ask_part_bg::before {
+    content: "";
+    background-image: url(../image/story_bg_1.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height: 550px;
+    position: absolute;
+    top: 0px;
+    left: -10px;
+}
+.ask_part_bg::after
+{
+    content: "";
+    background-image: url(../image/story_bg_2.png);
+    background-repeat: no-repeat;
+    width: 500px;
+    background-size: contain;
+    height:550px;
+    position: absolute;
+    bottom:0px;
+    right:0px;
+}
+.story_couple {
+    position: absolute;
+    top: -68px;
+    right: 135px;
+}
+
+/* ================================= end ask part ======================================== */
+
+
+/* ================================= start meet part james and sarrah ======================================== */
+.first_meet_main {
+    background-color: var(--bg_green);
+    padding-top: 135px;
+    padding-bottom:50px;
+    padding-left: 135px;
+    padding-right: 135px;
+    position: relative;
+}
+.about_2 {
+    margin-top: 60px;
+}
+.love_story p {
+    text-align: center;
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: white;
+    padding-bottom: 200px;
+}
+
+.meet_p_one {
+    background-color: white;
+    width: 60%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 100px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.meet_p_one .f_meet {
+    text-align: right;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_green);
+    font-weight: bold;
+    padding-bottom: 50px;
+}
+
+.about_single_sep_4 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 100px;
+    left: 84%;
+    transform: translateX(-50px);
+}
+
+.long_lorem {
+    text-align: right;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    font-weight: bold;
+}
+
+.meet_bg{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+    margin-bottom:380px;
+}
+.meet_bg::after
+{
+    content: "";
+    background-image: url(../image/line.svg);
+    background-repeat: no-repeat;
+    width: 700px;
+    background-size: contain;
+    height: 700px;
+    position: absolute;
+    top:130%;
+    right:300px; 
+}
+.meet_p_two {
+    background-color: white;
+    /* transform: matrix(0.99, 0.14, -0.14, 0.99, 0, 0); */
+    transition-duration: 1s;
+    transform: rotate(10deg);
+    position: absolute;
+    top:-15%;
+    right: 0%;
+    box-shadow: 0px 0px 10px black;
+}
+.tileline_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    padding: 30px 30px 110px 30px;
+}
+.tileline_img p
+{
+    font-family: 'Beau Rivage', cursive;
+    font-size: 60px;
+    color: var(--bg_yellow);
+    text-align: center;
+    transform: translatey(-60px);
+}
+.meet_p_one::before
+{
+    content: "";
+    background-image: url(../image/about-right-leaf.svg);
+    background-repeat: no-repeat;
+    width: 300px;
+    background-size: contain;
+    height: 350px;
+    position: absolute;
+    top:-120px;
+    right:-90px; 
+}
+/* ================================= end meet part james and sarrah ======================================== */
+
+
+/* ================================= start input part ======================================== */
+.row
+{
+    background-color:transparent;
+    width: 100%;
+}
+.txt_part
+{
+    width: 50%;
+    padding: 100px 50px 100px 0;
+}
+.input
+{
+    width:50%;
+}
+.txt_part > p
+{
+    font-family: 'Beau Rivage', cursive;
+    font-size: 40px;
+    color: var(--bg_yellow);
+    padding-bottom: 20px;
+}
+.txt_part > h6
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #A5B7B6;
+}
+.input
+{
+    justify-content:space-between;
+    align-items: center;
+}
+.input_type > input
+{
+    background-color:#2B5551;
+    padding: 14px 140px;
+    border: none !important;
+    font-size: 18px;
+    margin-left: 20px;
+}
+.send_btn > a
+{
+    background-color: var(--bg_yellow);
+    padding: 12px 30px;
+    color: white;
+    font-family: 'Cinzel Decorative', cursive;
+    font-weight: bold;
+}
+.send_btn:hover a{
+    background-color: transparent;
+    color: var(--bg_yellow);
+    border: 2px solid var(--bg_yellow);
+}
+/* ================================= end input part ======================================== */
+
+
+
+/* ++++++++++++++++++++++++++++++++++++++ event part++++++++++++++++++++++++++++++++++++++++++*/
+/* ================================= satrt event reception part ======================================== */
+.img_parent_1 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: transparent;
+}
+.reception
+{
+    margin-top:30px;
+}
+.reception img
+{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 5;
+    border:12px solid #E9EEED;
+}
+.icon_text
+{
+    padding-top: 20px;
+    padding-bottom:30px;
+}
+.icon_part > i
+{
+    font-size: 25px;
+    color:grey;
+}
+.icon_part > span
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    color: #A5B7B6;
+    text-decoration: underline;
+    padding-left: 10px;
+    padding-right: 50px;
+    letter-spacing: 1px;
+}
+.overview
+{
+    padding-bottom: 80px;
+}
+.overview_bg
+{
+    position: relative;
+}
+.overview_bg > p
+{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    font-weight: bolder;
+    color: var(--bg_green);
+    padding-bottom: 50px;
+}
+.about_single_sep_10 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top:45px;
+    left: 0;
+}
+.about_single_sep_11 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top:50px;
+    left: 0;
+}
+.p_parent
+{
+    padding-bottom: 20px;
+}
+.overview_bg .overview_p
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 19px;
+    color: #777777;
+    font-weight:bold;
+    padding-bottom: 15px;
+}
+
+/* ================================= end event reception part ======================================== */
+
+
+/* ================================= start our service part ======================================== */
+.ask_part_main_1
+{
+    position: relative;
+    width: 100%;
+    background-color:transparent;
+    align-items: center;
+
+}
+.ask_part_bg_1 {
+    background-color: #E9EEED;
+    padding: 130px 100px 130px 135px;
+    width: 60%;
+
+}
+.ask_part_bg_1::before {
+    content: "";
+    background-image: url(../image/about-main-left-leaf.svg);
+    background-repeat: no-repeat;
+    width: 300px;
+    background-size: contain;
+    height: 300px;
+    position: absolute;
+    top: 0px;
+    left:-120px;
+}
+.story_couple_1 {
+    width: 40%;
+    background-color:transparent;
+    height: 600px;
+}
+.story_couple_1 img
+{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+.p_long_1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+/* ================================= end our service part============================ */
+
+
+/* ================================= start button part============================ */
+.main_box
+{
+    width: 60%;
+    margin:100px auto ;
+    background-color:transparent;  
+    padding:8px 0;
+    border: 2px solid var(--bg_green);  
+    border-radius: 50px;
+}
+button
+{
+    border-radius: 50px;
+    border: none;
+    background-color: transparent;
+}
+.main_box > button
+{
+    margin-left:29px;
+}
+.m_btn1,.m_btn2,.m_btn3,.m_btn4
+{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 21px;
+    color: var(--bg_green);
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius:50px;
+}
+.main_1:hover .m_btn1,.main_2:hover .m_btn2,.main_3:hover .m_btn3,.main_4:hover .m_btn4
+{
+    background-color: #0a3b37;
+    color: white;
+}
+/* ================================= end button part============================ */
+
+
+/* ================================= start gallery part============================ */
+.images
+{
+    width: 100%;
+}
+.img_1,.img_2,.img_3,.img_4
+{
+    width: 25%;
+    position: relative;
+}
+.img_1 img,.img_2 img,.img_3 img,.img_4 img
+{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 10px solid transparent;
+}
+.all_gallery
+{
+    padding-bottom: 80px;
+}
+/* ================================= end gallery part============================ */
+
+
+/* ++++++++++++++++++++++++++++++++++ start RSVP Page +++++++++++++++++++++++++++++++++++ */
+/* ================================= transpernt part============================ */
+.change
+{
+    transform: translatex(-220px);
+}
+/* ================================= transpernt part============================ */
+
+
+/* ================================= start form part============================ */
+.bg_img_blur
+{
+    background-image: url(../image/rsvp_bg.jpg);
+    background-size: cover;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+.main_parent
+{
+    width: 100%;
+    position: relative;
+}
+.left_form
+{
+    width: 50%;
+    background-color:#E9EEED;
+    padding: 50px;
+    box-shadow: 0px 0px 10px black;
+}
+.right_pic
+{
+    width: 50%;
+    background-color:transparent;
+    position: relative;
+}
+.form .will_you
+{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 40px;
+    color: var(--bg_green);
+    font-weight: bolder;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.form > p
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.form > h6
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color:var(--bg_green);
+    padding-bottom: 20px;
+}
+.html_btn > input
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: var(--bg_green);
+    font-weight: bolder;
+}
+.html_part > input
+{
+    width: 100%;
+    background-color:#2B5551;
+    color:white;
+    border: none;
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 12px 0 12px 9px;
+    margin-bottom: 20px;
+}
+.start_send > a
+{
+    margin-top: 20px;
+    color: white;
+    font-weight: bolder;
+    font-family: 'Cinzel Decorative', cursive;
+    background-color: var(--bg_yellow);
+    font-size: 20px;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+.img_card
+{
+    margin-top: 30px;
+    margin-left:120px;
+    transform: rotate(-15deg);
+    width:50%;
+    z-index: 2;
+}
+.img_card > img,.img_card_2 > img
+{
+    border-width: 20px 20px 70px 20px;
+    border-style: solid;
+    border-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0,.3);
+}
+.img_card_2
+{
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    transform: rotate(15deg);
+    z-index: 2;
+}
+.img_card_2 > p
+{
+    font-size: 40px;
+    color: var(--bg_green);
+    font-family: 'Beau Rivage', cursive;
+    transform: translateY(-50px);
+    text-align: center;
+    font-weight: bolder;
+
+}
+.right_pic::after
+{
+    content: "";
+    background-image: url(../image/card_right_flower.png);
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    background-repeat: no-repeat;
+    top:-10px;
+    right: 20px;
+}
+/* ================================= end form part============================ */
+
+
+
+/* ================================= satrt three section part============================ */
+.bg_pattern
+{
+    width: 100%;
+    padding-bottom: 100px;
+    margin-top: 180px;
+}
+.one,.two,.three
+{
+    width:33.33%;
+    background-color: #E9EEED;
+}
+.main_one
+{
+    position: relative;
+    border: 10px solid white;
+}
+.main_one > .first
+{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color: var(--bg_green);
+    font-weight: bold;
+    padding-top: 150px;
+    padding-bottom:50px;
+    text-align: center;
+}
+.sunday
+{
+    width:40%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    text-align: center;
+    margin: auto;
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+.l172
+{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: #777777;
+    font-weight: bolder;
+    padding-bottom: 30px;
+}
+.img_11 > img
+{
+    background-color: #0a3b37;
+    padding:60px 70px;
+    -webkit-clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+    transform: translateY(-115px);
+    border: 7px solid var(--bg_yellow);
+    position: absolute;
+    top: 3px;
+    left: 22%;
+}
+.img_11
+{
+    text-align: center;
+}
+.about_single_sep_5 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top: 200px;
+    left: 42%;
+}
+/* ================================= end three section part============================ */
+
+
+/* ================================= start map part============================ */
+.map > iframe
+{
+    width: 100%;
+    height: 510px;
+}
+/* ================================= end map part============================ */
+
+/* +++++++++++++++++++++++++++++++++++ start Blog page +++++++++++++++++++++++++++++ */
+
+
+/* ================================= start blog grid part============================ */
+.blog_card_container{
+    margin-top:30px;
+}
+.blog_card{
+    position: relative;
+    width: 33.33%;
+}
+.blog_date{
+    position: absolute;
+    top:4px;
+    z-index: 2;
+    right: 25px;
+    width: 75px;
+    background-color: #E9EEED;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-top: 5px solid var(--bg_yellow);
+}
+.blog_date h6{
+    font-size: 25px;
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--bg_yellow);
+}
+.blog_date .moth{
+    font-family: 'Beau Rivage', cursive;
+    font-size: 18px;
+    font-weight: 500;
+}
+.blog_single_content{
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    top: -50px;
+    padding: 0 30px;
+    text-align: center;
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    z-index: 9;
+    position: relative;
+    box-shadow: 0px 7px 10px #0a3b371f;
+}
+.blog_single_title {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 25px;
+    color:  var(--bg_green);
+    font-weight: 600;
+    text-align: left;
+    padding-bottom: 60px;  
+    padding-top: 40px;
+}
+.blog_single_para{
+    text-align: left;
+    color:#777777;
+    font-family: 'Rubik', sans-serif;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom:18px;
+}
+.author_name{
+    font-family: 'Beau Rivage', cursive;
+    font-size: 25px;
+    color: var(--bg_green);
+    transform: translateX(-90px);
+    padding-bottom:20px;
+}
+.author_name span{
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+    color: darkgrey;
+}
+.tags
+{
+    gap: 8px;
+    padding-bottom: 15px;
+}
+.tags > a{
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+    color: var(--bg_green);
+    background-color: white;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+.btn_primary{
+    border: 1px solid darkgrey;
+    background-color: var(--bg_green);
+    color: white;
+    padding: 10px 25px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 0 !important;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    margin-left: -160px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.img_diff img
+{
+    height: 100%;
+    object-fit: cover;
+    border:5px solid transparent;
+}
+.about_single_sep_6 {
+    width: 70px;
+    height: 6px;
+    background: transparent linear-gradient(90deg, #8D6B35 0%, #C9974C 30%, #FCC270 60%, #C9974C 100%) 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    position: absolute;
+    top:120px;
+    left:50px;
+    transform: translateX(-15px);
+}
+/* ================================= end blog grid part============================ */
+
+
+
+
